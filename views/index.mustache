@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Daily Agenda:</h2>
+        <form action="/list" method="post">
+          <label for="addingTasks">Add Task:</label>
+          <input id="taskAdd" type="text" name="add">
+          <input type="submit" method="POST" formaction="/list">
+
+          <ul class="todo-list">
+            <h3>Things to do:</h3>
+            {{#list}}
+              <li>
+                {{#complete}}
+                  <input type="checkbox" checked>
+                  <del>{{.}}</del>
+                {{/complete}}
+                {{^complete}}
+                <input type="checkbox" id="taskdelete"  formaction="/complete"> {{.}}
+                <input for="deletingTasks" type="button" name="delete" method="POST">Delete</label>
+                {{/complete}}
+              </li>
+            {{/list}}
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
