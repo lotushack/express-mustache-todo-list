@@ -6,38 +6,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>To Do List</title>
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h2>Daily Agenda:</h2>
-        <form action="/list" method="post">
-          <label for="addingTasks">Add Task:</label>
-          <input id="taskAdd" type="text" name="add">
-          <input type="submit" method="POST" formaction="/list">
+  <header class="header">
+    <!-- <div class="container"> -->
+      <h1>Daily Agenda:</h1>
+      <form action="/list" method="POST">
+        <label for="addingTasks"></label>
+        <input id="taskAdd" type="text" name="add">
+        <input type="submit">
+      </form>
+  </header>
+  <main>
+    <ul>
+      <h3>Things to do:</h3>
 
-          <ul class="todo-list">
-            <h3>Things to do:</h3>
-            {{#list}}
-              <li>
-                {{#complete}}
-                  <input type="checkbox" checked>
-                  <del>{{.}}</del>
-                {{/complete}}
-                {{^complete}}
-                <input type="checkbox" id="taskdelete"  formaction="/complete"> {{.}}
-                <input for="deletingTasks" type="button" name="delete" method="POST">Delete</label>
-                {{/complete}}
-              </li>
-            {{/list}}
-          </ul>
+        {{#list}}
+      <li class="todoList">
+        <form action="/" method="POST">
+        <button  type="submit" name="finish" value="{{.}}">Completed</button>
         </form>
-      </div>
-    </div>
-  </div>
+         {{.}}
+      </li>
+        {{/list}}
+
+    </ul>
+    <ul>
+      <h3>Things completed:</h3>
+      {{#complete}}
+
+      <li>
+          <p>{{.}}</p>
+      </li>
+
+      {{/complete}}
+    </ul>
+  </main>
+  <!-- </div> -->
 </body>
 
 </html>
